@@ -1,0 +1,31 @@
+{
+    "root": true,
+    "extends": [
+        "@sharegate/eslint-config-recommended"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "env": {
+        // For webpack config.
+        "node": true
+    },
+    "overrides": [
+        {
+            "files": ["*.tsx"],
+            "extends": [
+                "@sharegate/eslint-config-react"
+            ],
+            "rules": {
+                "react/jsx-filename-extension": [1, { "extensions": [".ts", ".tsx"] }]
+            }
+        },
+        {
+            "files": ["*.ts?(x)"],
+            "extends":[
+                "@sharegate/eslint-config-typescript"
+            ]
+        }
+    ]
+}

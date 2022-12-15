@@ -1,0 +1,8 @@
+{
+    "extends": "../../tsconfig.shared.json",
+    "compilerOptions": {
+        // Emit transpilation output.
+        "noEmit": false,
+        "declaration": false
+    }
+}

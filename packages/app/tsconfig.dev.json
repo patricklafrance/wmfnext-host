@@ -1,0 +1,7 @@
+{
+    "extends": "./tsconfig.build.json",
+    "compilerOptions": {
+        // Also generate source map.
+        "sourceMap": true
+    }
+}
