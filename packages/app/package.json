@@ -1,12 +1,22 @@
 {
   "name": "wmfnext-host",
   "version": "0.0.1",
+  "private": true,
   "author": "Patrick Lafrance",
   "license": "Apache-2.0",
-  "repository": "",
+  "repository": "https://github.com/patricklafrance/wmfnext-host.git",
   "type": "module",
   "scripts": {
-    "dev": "webpack serve --config webpack.dev.cjs",
-    "build": "webpack --config webpack.prod.cjs"
+    "prebuild": "yarn clean",
+    "build": "webpack --config webpack.prod.cjs",
+    "clean": "run-p delete-dist delete-ts-cache",
+    "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
+    "delete-dist": "rimraf dist",
+    "dev": "webpack serve --config webpack.dev.cjs"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.4.5"
   }
 }
