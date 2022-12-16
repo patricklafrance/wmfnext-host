@@ -1,5 +1,8 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+
 const path = require("path");
+const packageDependencies = require("./package.json").dependencies;
+const wmfConfig = require("./webpack.wmf.cjs");
 
 module.exports = {
     mode: "development",
@@ -43,6 +46,7 @@ module.exports = {
         extensions: [".js", ".ts", ".tsx", ".css"]
     },
     plugins: [
+        wmfConfig(packageDependencies),
         new HtmlWebpackPlugin({
             template: "./public/index.html"
         })
