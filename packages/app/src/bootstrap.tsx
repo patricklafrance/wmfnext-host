@@ -1,11 +1,9 @@
+import { ConsoleLogger, LogLevel, ShellRuntime } from "wmfnext-shell";
+import type { RemoteDefinition, RemoteModuleRegistratorError } from "wmfnext-remote-loader";
+
 import { App } from "./App";
 import { createRoot } from "react-dom/client";
-import { registerDynamicRemotes } from "./temp";
-
-interface RemoteDefinition {
-    url: string;
-    name: string;
-}
+import { registerRemoteModules } from "wmfnext-remote-loader";
 
 const RemoteModulesRegistrationStatus = {
     inProgress: "in-progress",
@@ -20,19 +18,21 @@ const Remotes: RemoteDefinition[] = [
     }
 ];
 
-// @ts-ignore
-window.registrationState = RemoteModulesRegistrationStatus.inProgress;
+const runtime = new ShellRuntime({
+    loggers: [new ConsoleLogger()]
+});
 
-registerDynamicRemotes(Remotes).then(errors => {
+// @ts-ignore
+window.__wmfnext_host_registrationState__ = RemoteModulesRegistrationStatus.inProgress;
+
+registerRemoteModules(Remotes, runtime, { context: "foo" }).then((errors: RemoteModuleRegistratorError[]) => {
     if (errors.length > 0) {
-        console.error("Errors occured during remotes registration: ", errors);
+        runtime.logError("Errors occured during remotes registration: ", errors);
     }
 
     // @ts-ignore
-    window.registrationState = RemoteModulesRegistrationStatus.completed;
+    window.__wmfnext_host_registrationState__ = RemoteModulesRegistrationStatus.completed;
 });
-
-//////////////// CODE OVER HERE IS TEMPORARY //////////////////
 
 const root = createRoot(document.getElementById("root"));
 

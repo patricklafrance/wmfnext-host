@@ -1,5 +1,14 @@
 # wmfnext-host
 
+Host application to showcase [wmfnext-shell](https://github.com/patricklafrance/wmfnext-shell).
+
+- [Installation](#installation)
+- [Start developing](#start-developing)
+- [Publish the application](#publish-the-application)
+- [Release the packages](#release-the-packages)
+- [Available remotes](#available-remotes)
+- [Other commands](#other-commands)
+
 ## Installation
 
 This project use Yarn workspace. Therefore, you must install Yarn:
@@ -16,6 +25,8 @@ To install the project, open a terminal at the root of the workspace and execute
 yarn install
 ```
 
+> To ease local development symlinks to shell packages are automatically created at installation.
+
 ## Start developing
 
 [Open a terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal#_managing-multiple-terminals) and execute the following command at the root of the workspace:
@@ -29,6 +40,10 @@ To only start the application in development mode, use the following command ins
 ```bash
 yarn dev-app
 ```
+
+## Publish the application
+
+TBD
 
 ## Release the packages
 
@@ -66,10 +81,16 @@ After you released the packages, create a [Github release](https://github.com/gs
 
 Don't forget to **publish** the release.
 
-## Publish the application
+## Available remotes
 
 TBD
 
-## Remotes
+## Other commands
+
+### reset
+
+TBD
+
+### serve-build
 
 TBD

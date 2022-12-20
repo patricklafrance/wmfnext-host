@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 const path = require("path");
-const packageDependencies = require("./package.json").dependencies;
+const packageDependencies = require("../../package.json").devDependencies;
 const wmfConfig = require("./webpack.wmf.cjs");
 
 module.exports = {
@@ -27,6 +27,13 @@ module.exports = {
                     options: {
                         configFile: path.resolve(__dirname, "tsconfig.build.json")
                     }
+                }
+            },
+            {
+                // https://stackoverflow.com/questions/69427025/programmatic-webpack-jest-esm-cant-resolve-module-without-js-file-exten
+                test: /\.js/,
+                resolve: {
+                    fullySpecified: false
                 }
             },
             {
