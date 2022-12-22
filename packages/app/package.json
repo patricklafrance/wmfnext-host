@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "yarn clean",
-    "build": "webpack --config webpack.prod.cjs --stats-error-details",
+    "build": "webpack --config webpack.prod.cjs",
     "clean": "run-p delete-dist delete-ts-cache",
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",

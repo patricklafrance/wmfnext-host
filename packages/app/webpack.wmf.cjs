@@ -15,6 +15,10 @@ module.exports = function(packageDependencies) {
             "react-router-dom": {
                 singleton: true,
                 requiredVersion: packageDependencies["react-router-dom"]
+            },
+            "wmfnext-shell": {
+                singleton: true,
+                requiredVersion: "0.0.1"
             }
         }
     });

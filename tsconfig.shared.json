@@ -2,7 +2,7 @@
     "$schema": "https://json.schemastore.org/tsconfig",
     "compilerOptions": {
         // The output environment that the code will be compiled for
-        "target": "ES6",
+        "target": "ESNext",
         // The output module resolution system that the code will be compiled for
         "module": "ESNext",
         // The input module resolution system (until https://github.com/microsoft/TypeScript/issues/37582 is fixed)

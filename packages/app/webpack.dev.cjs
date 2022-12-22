@@ -12,7 +12,7 @@ module.exports = {
         port: 8080,
         historyApiFallback: true
     },
-    entry: "./src/index.tsx",
+    entry: "./src/index.ts",
     output: {
         // The trailing / is important otherwise hot reload doesn't work.
         publicPath: "http://localhost:8080/"
@@ -39,7 +39,6 @@ module.exports = {
             },
             {
                 test: /\.(css)$/,
-                exclude: /node_modules/,
                 use: ["style-loader", "css-loader"]
             },
             {
