@@ -1,4 +1,5 @@
 {
+  "$schema": "http://json.schemastore.org/package",
   "name": "wmfnext-host-app",
   "version": "0.0.0",
   "private": true,
@@ -8,11 +9,11 @@
   "type": "module",
   "scripts": {
     "prebuild": "yarn clean",
-    "build": "webpack --config webpack.prod.cjs",
+    "build": "webpack --config webpack.prod.js",
     "clean": "run-p delete-dist delete-ts-cache",
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",
-    "dev": "webpack serve --config webpack.dev.cjs",
+    "dev": "webpack serve --config webpack.dev.js",
     "serve-build": "run-s build serve-build:start-server",
     "serve-build:start-server": "yarn http-server dist -p 8080 -P http://localhost:8080?"
   }

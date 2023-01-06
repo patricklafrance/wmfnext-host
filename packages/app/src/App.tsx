@@ -1,11 +1,11 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { useFederatedRoutes, useRuntime } from "wmfnext-shell";
 
 import { Loading } from "./components";
 import { NotFound } from "./pages";
 import { RegistrationStatus } from "./registrationStatus";
 import { RootLayout } from "./layouts";
 import { useMemo } from "react";
+import { useModuleRoutes } from "wmfnext-shell";
 import { useRerenderOnceRemotesRegistrationCompleted } from "wmfnext-remote-loader";
 
 // TODO: move into a file.
@@ -18,8 +18,7 @@ declare global {
 export function App() {
     useRerenderOnceRemotesRegistrationCompleted(() => window.__registration_state__ === RegistrationStatus.completed);
 
-    const runtime = useRuntime();
-    const federatedRoutes = useFederatedRoutes(runtime);
+    const federatedRoutes = useModuleRoutes();
 
     const router = useMemo(() => {
         return createBrowserRouter([

@@ -1,10 +1,16 @@
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import ModuleFederationPlugin from "webpack/lib/container/ModuleFederationPlugin.js";
+import { createHostConfiguration } from "wmfnext-remote-loader/createModuleFederationConfiguration.js";
+import path from "path";
+import url from "url";
+import packageJson from "../../package.json" assert { type: "json" };
 
-const path = require("path");
-const packageDependencies = require("../../package.json").devDependencies;
-const wmfConfig = require("./webpack.wmf.cjs");
+// "__dirname" is specific to CommonJS: https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-module.exports = {
+/** @type {import("webpack").Configuration} */
+export default {
     mode: "development",
     target: "web",
     devtool: "inline-source-map",
@@ -52,7 +58,20 @@ module.exports = {
         extensions: [".js", ".ts", ".tsx", ".css"]
     },
     plugins: [
-        wmfConfig(packageDependencies),
+        new ModuleFederationPlugin(
+            createHostConfiguration(
+                "host",
+                packageJson,
+                {
+                    sharedDependencies: {
+                        "wmfnext-shell": {
+                            singleton: true,
+                            requiredVersion: "0.0.1"
+                        }
+                    }
+                }
+            )
+        ),
         new HtmlWebpackPlugin({
             template: "./public/index.html"
         })

@@ -1,5 +1,5 @@
 import { ConsoleLogger, RuntimeContext, ShellRuntime } from "wmfnext-shell";
-import type { RemoteDefinition, RemoteModuleRegistratorError } from "wmfnext-remote-loader";
+import type { RegistrationError, RemoteDefinition } from "wmfnext-remote-loader";
 
 import { App } from "./App";
 import { Home } from "./pages";
@@ -35,9 +35,9 @@ runtime.registerRoutes([
 
 window.__registration_state__ = RegistrationStatus.inProgress;
 
-registerRemoteModules(Remotes, runtime).then((errors: RemoteModuleRegistratorError[]) => {
+registerRemoteModules(Remotes, runtime).then((errors: RegistrationError[]) => {
     if (errors.length > 0) {
-        runtime.logError("Errors occured during remotes registration: ", errors);
+        runtime.logger.error("Errors occured during remotes registration: ", errors);
     }
 
     window.__registration_state__ = RegistrationStatus.completed;
