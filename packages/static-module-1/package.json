@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json.schemastore.org/package",
+  "name": "wmfnext-static-module-1",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Patrick Lafrance",
+  "license": "MIT",
+  "repository": "https://github.com/patricklafrance/wmfnext-host.git",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "yarn clean",
+    "build": "tsc --build ./tsconfig.build.json",
+    "clean": "run-p delete-dist delete-ts-cache",
+    "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
+    "delete-dist": "rimraf dist",
+    "dev": "tsc --watch --project ./tsconfig.build.json"
+  }
+}

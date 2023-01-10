@@ -1,0 +1,14 @@
+{
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "extends": "./tsconfig.shared.json",
+    "compilerOptions": {
+        // Generate typing files.
+        "noEmit": false,
+        "declaration": true,
+        // Generate source map.
+        "sourceMap": true
+    },
+    "watchOptions": {
+        "excludeDirectories": ["**/node_modules", "**/dist"]
+    }
+}

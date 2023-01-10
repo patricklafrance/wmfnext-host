@@ -5,8 +5,8 @@ import { NotFound } from "./pages";
 import { RegistrationStatus } from "./registrationStatus";
 import { RootLayout } from "./layouts";
 import { useMemo } from "react";
-import { useModuleRoutes } from "wmfnext-shell";
 import { useRerenderOnceRemotesRegistrationCompleted } from "wmfnext-remote-loader";
+import { useRoutes } from "wmfnext-shell";
 
 // TODO: move into a file.
 declare global {
@@ -18,7 +18,7 @@ declare global {
 export function App() {
     useRerenderOnceRemotesRegistrationCompleted(() => window.__registration_state__ === RegistrationStatus.completed);
 
-    const federatedRoutes = useModuleRoutes();
+    const federatedRoutes = useRoutes();
 
     const router = useMemo(() => {
         return createBrowserRouter([
