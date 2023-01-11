@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Loading } from "./components";
 import { NotFound } from "./pages";
 import { RegistrationStatus } from "./registrationStatus";
+import { RootErrorBoundary } from "./RootErrorBoundary";
 import { RootLayout } from "./layouts";
 import { useMemo } from "react";
 import { useRerenderOnceRemotesRegistrationCompleted } from "wmfnext-remote-loader";
@@ -26,10 +27,17 @@ export function App() {
                 path: "/",
                 element: <RootLayout />,
                 children: [
-                    ...federatedRoutes,
                     {
-                        path: "*",
-                        element: <NotFound />
+                        // Pathless router to set an error boundary inside the layout instead of outside.
+                        // It's quite useful to not lose the layout when an unmanaged error occurs.
+                        errorElement: <RootErrorBoundary />,
+                        children: [
+                            ...federatedRoutes,
+                            {
+                                path: "*",
+                                element: <NotFound />
+                            }
+                        ]
                     }
                 ]
             }
