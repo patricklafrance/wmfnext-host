@@ -1,13 +1,13 @@
 import { useLogger } from "wmfnext-shell";
 
-export function Page3() {
+export function Page5() {
     const logger = useLogger();
 
-    logger.debug("Rendering \"page3\" from module \"static-1\"");
+    logger.debug("Rendering \"page5\" from module \"static-1\"");
 
     return (
         <main>
-            <h1>Page 3</h1>
+            <h1>Page 5</h1>
             <p>From static-1</p>
         </main>
     );

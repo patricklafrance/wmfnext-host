@@ -1,3 +1,5 @@
+import "./RootLayout.css";
+
 import { Link, Outlet } from "react-router-dom";
 import { Suspense, useCallback } from "react";
 import { useNavigationItems, useRenderNavigationItems } from "wmfnext-shell";
@@ -9,10 +11,12 @@ import type { RenderNavigationItem } from "wmfnext-shell";
 export function RootLayout() {
     const navigationItems = useNavigationItems();
 
-    const renderItem = useCallback(({ content, linkProps, additionalProps }: RenderNavigationItem, index: number, level: number) => {
+    const renderItem = useCallback(({ content, linkProps, additionalProps: { highlight, ...additionalProps } }: RenderNavigationItem, index: number, level: number) => {
         return (
-            <li key={`${level}-${index}`}>
-                <Link {...linkProps} {...additionalProps}>{content}</Link>
+            <li key={`${level}-${index}`} className={highlight && "highlight"}>
+                <Link {...linkProps} {...additionalProps}>
+                    {content}
+                </Link>
             </li>
         );
     }, []);
@@ -25,13 +29,13 @@ export function RootLayout() {
         );
     }, []);
 
-    const renderedNavigationItems = useRenderNavigationItems(navigationItems, renderItem, {
-        renderSection
-    });
+    const renderedNavigationItems = useRenderNavigationItems(navigationItems, renderItem, renderSection);
 
     return (
         <div>
-            <nav>{renderedNavigationItems}</nav>
+            <nav className="nav">
+                {renderedNavigationItems}
+            </nav>
             <Suspense fallback={<Loading />}>
                 <Outlet />
             </Suspense>
