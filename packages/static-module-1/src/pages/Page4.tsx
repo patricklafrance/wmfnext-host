@@ -1,6 +1,6 @@
 import { useLogger } from "wmfnext-shell";
 
-export function Page4() {
+export default function Page4() {
     const logger = useLogger();
 
     logger.debug("Rendering \"page4\" from module \"static-1\"");

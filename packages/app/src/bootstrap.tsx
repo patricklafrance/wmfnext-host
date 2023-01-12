@@ -2,9 +2,9 @@ import { ConsoleLogger, RuntimeContext, ShellRuntime, registerStaticModules } fr
 import type { RegistrationError, RemoteDefinition } from "wmfnext-remote-loader";
 
 import { App } from "./App";
-import { Home } from "./pages";
 import { RegistrationStatus } from "./registrationStatus";
 import { createRoot } from "react-dom/client";
+import { lazy } from "react";
 import { registerRemoteModules } from "wmfnext-remote-loader";
 import { register as registerStaticModule1 } from "wmfnext-static-module-1";
 
@@ -14,6 +14,9 @@ declare global {
         __registration_state__: RegistrationStatus;
     }
 }
+
+const HomePage = lazy(() => import("./pages/Home"));
+const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
 const Remotes: RemoteDefinition[] = [
     {
@@ -30,7 +33,11 @@ const runtime = new ShellRuntime({
 runtime.registerRoutes([
     {
         index: true,
-        element: <Home />
+        element: <HomePage />
+    },
+    {
+        path: "*",
+        element: <NotFoundPage />
     }
 ]);
 

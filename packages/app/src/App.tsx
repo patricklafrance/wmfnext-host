@@ -1,7 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import { Loading } from "./components";
-import { NotFound } from "./pages";
 import { RegistrationStatus } from "./registrationStatus";
 import { RootErrorBoundary } from "./RootErrorBoundary";
 import { RootLayout } from "./layouts";
@@ -32,11 +31,7 @@ export function App() {
                         // It's quite useful to not lose the layout when an unmanaged error occurs.
                         errorElement: <RootErrorBoundary />,
                         children: [
-                            ...federatedRoutes,
-                            {
-                                path: "*",
-                                element: <NotFound />
-                            }
+                            ...federatedRoutes
                         ]
                     }
                 ]
