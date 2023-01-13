@@ -1,17 +1,18 @@
 import "./RootLayout.css";
 
 import { Link, Outlet } from "react-router-dom";
+import type { RenderItemFunction, RenderSectionFunction } from "wmfnext-shell";
 import { Suspense, useCallback } from "react";
-import { useNavigationItems, useRenderNavigationItems } from "wmfnext-shell";
+import { useNavigationItems, useRenderedNavigationItems, useSession } from "wmfnext-shell";
 
+import type { AppSession } from "../session";
 import { Loading } from "../components";
-import type { ReactNode } from "react";
-import type { RenderNavigationItem } from "wmfnext-shell";
 
 export function RootLayout() {
+    const session = useSession<AppSession>();
     const navigationItems = useNavigationItems();
 
-    const renderItem = useCallback(({ content, linkProps, additionalProps: { highlight, ...additionalProps } }: RenderNavigationItem, index: number, level: number) => {
+    const renderItem: RenderItemFunction = useCallback(({ content, linkProps, additionalProps: { highlight, ...additionalProps } }, index, level) => {
         return (
             <li key={`${level}-${index}`} className={highlight && "highlight"}>
                 <Link {...linkProps} {...additionalProps}>
@@ -21,7 +22,7 @@ export function RootLayout() {
         );
     }, []);
 
-    const renderSection = useCallback((itemElements: ReactNode[], index: number, level: number) => {
+    const renderSection: RenderSectionFunction = useCallback((itemElements, index, level) => {
         return (
             <ul key={`${level}-${index}`}>
                 {itemElements}
@@ -29,10 +30,20 @@ export function RootLayout() {
         );
     }, []);
 
-    const renderedNavigationItems = useRenderNavigationItems(navigationItems, renderItem, renderSection);
+    const renderedNavigationItems = useRenderedNavigationItems(navigationItems, renderItem, renderSection);
 
     return (
         <div>
+            {session && (
+                <>
+                    <div>
+                        <span>Current user: </span>{session.user.name}
+                    </div>
+                    <div>
+                        <Link to="/logout">logout</Link>
+                    </div>
+                </>
+            )}
             <nav className="nav">
                 {renderedNavigationItems}
             </nav>

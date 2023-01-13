@@ -44,7 +44,7 @@ export const register: ModuleRegisterFunction = (runtime: Runtime) => {
             content: (
                 <>
                     <ArchiveIcon />
-                    <span>Static1/Page 1</span>
+                    <span>Static1/Page 1 - Navigation item with a React element as content and additional Link props</span>
                 </>
             ),
             style: {
@@ -55,21 +55,21 @@ export const register: ModuleRegisterFunction = (runtime: Runtime) => {
         },
         {
             to: "static1/page-2",
-            content: "Static1/Page 2",
+            content: "Static1/Page 2 - Navigation item with children",
             children: [
                 {
                     to: "static1/page-4",
-                    content: "Static1/Page 4"
+                    content: "Static1/Page 4 - Child navigation item"
                 },
                 {
                     to: "static1/page-5",
-                    content: "Static1/Page 5"
+                    content: "Static1/Page 5 - Child navigation item"
                 }
             ]
         },
         {
             to: "static1/page-3",
-            content: "Static1/Page 3",
+            content: "Static1/Page 3 - Navigation item with a top priority and custom additional props",
             priority: 99,
             additionalProps: {
                 highlight: true
@@ -77,7 +77,7 @@ export const register: ModuleRegisterFunction = (runtime: Runtime) => {
         },
         {
             to: "static1/page-6",
-            content: "Static1/Page 6"
+            content: "Static1/Page 6 - Failing page"
         }
     ]);
 };

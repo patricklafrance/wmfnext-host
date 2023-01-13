@@ -1,45 +1,67 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Navigate, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { lazy, useCallback, useMemo } from "react";
+import { useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
 
 import { Loading } from "./components";
-import { RegistrationStatus } from "./registrationStatus";
 import { RootErrorBoundary } from "./RootErrorBoundary";
 import { RootLayout } from "./layouts";
-import { useMemo } from "react";
-import { useRerenderOnceRemotesRegistrationCompleted } from "wmfnext-remote-loader";
-import { useRoutes } from "wmfnext-shell";
+import { useIsReady } from "wmfnext-remote-loader";
 
-// TODO: move into a file.
-declare global {
-    interface Window {
-        __registration_state__: RegistrationStatus;
-    }
+const LoginPage = lazy(() => import("./pages/Login"));
+const LogoutPage = lazy(() => import("./pages/Logout"));
+const NotFoundPage = lazy(() => import("./pages/NotFound"));
+
+function AuthenticatedRoutes() {
+    return useIsAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
 }
 
 export function App() {
-    useRerenderOnceRemotesRegistrationCompleted(() => window.__registration_state__ === RegistrationStatus.completed);
+    const registrationStatus = useIsReady();
+    const routes = useRoutes();
 
-    const federatedRoutes = useRoutes();
-
-    const router = useMemo(() => {
-        return createBrowserRouter([
-            {
-                path: "/",
-                element: <RootLayout />,
+    const hoistedRoutes = useHoistedRoutes(routes, {
+        wrapNonHoistedRoutes: useCallback(x => {
+            return {
+                element: <AuthenticatedRoutes />,
                 children: [
                     {
-                        // Pathless router to set an error boundary inside the layout instead of outside.
-                        // It's quite useful to not lose the layout when an unmanaged error occurs.
-                        errorElement: <RootErrorBoundary />,
+                        path: "/",
+                        element: <RootLayout />,
                         children: [
-                            ...federatedRoutes
+                            {
+                                // Pathless router to set an error boundary inside the layout instead of outside.
+                                // It's quite useful to not lose the layout when an unmanaged error occurs.
+                                errorElement: <RootErrorBoundary />,
+                                children: [
+                                    ...x
+                                ]
+                            }
                         ]
                     }
                 ]
+            };
+        }, [])
+    });
+
+    const router = useMemo(() => {
+        return createBrowserRouter([
+            ...hoistedRoutes,
+            {
+                path: "login",
+                element: <LoginPage />
+            },
+            {
+                path: "logout",
+                element: <LogoutPage />
+            },
+            {
+                path: "*",
+                element: <NotFoundPage />
             }
         ]);
-    }, [federatedRoutes]);
+    }, [hoistedRoutes]);
 
-    if (window.__registration_state__ === RegistrationStatus.inProgress) {
+    if (registrationStatus !== "ready") {
         return <Loading />;
     }
 

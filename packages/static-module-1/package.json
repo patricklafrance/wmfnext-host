@@ -14,6 +14,6 @@
     "clean": "run-p delete-dist delete-ts-cache",
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",
-    "dev": "tsc --watch --project ./tsconfig.build.json"
+    "dev": "tsc --watch --project ./tsconfig.dev.json"
   }
 }
