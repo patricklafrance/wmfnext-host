@@ -5,7 +5,7 @@ import { useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
 import { Loading } from "./components";
 import { RootErrorBoundary } from "./RootErrorBoundary";
 import { RootLayout } from "./layouts";
-import { useIsReady } from "wmfnext-remote-loader";
+import { useAreRemotesReady } from "wmfnext-remote-loader";
 
 const LoginPage = lazy(() => import("./pages/Login"));
 const LogoutPage = lazy(() => import("./pages/Logout"));
@@ -16,7 +16,7 @@ function AuthenticatedRoutes() {
 }
 
 export function App() {
-    const registrationStatus = useIsReady();
+    const isReady = useAreRemotesReady();
     const routes = useRoutes();
 
     const wrapManagedRoutes = useCallback(managedRoutes => {
@@ -28,7 +28,7 @@ export function App() {
                     element: <RootLayout />,
                     children: [
                         {
-                            // Pathless router to set an error boundary inside the layout instead of outside.
+                            // Pathless route to set an error boundary inside the layout instead of outside.
                             // It's quite useful to not lose the layout when an unmanaged error occurs.
                             errorElement: <RootErrorBoundary />,
                             children: [
@@ -70,7 +70,7 @@ export function App() {
         ]);
     }, [hoistedRoutes]);
 
-    if (registrationStatus !== "ready") {
+    if (!isReady) {
         return <Loading />;
     }
 
