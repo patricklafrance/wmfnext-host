@@ -18,6 +18,7 @@
     "serve-build:start-server": "yarn http-server dist -p 8080 -P http://localhost:8080?"
   },
   "dependencies": {
-    "wmfnext-static-module-1": "file:../static-module-1"
+    "wmfnext-static-module-1": "file:../static-module-1",
+    "wmfnext-typings": "file:../typings"
   }
 }

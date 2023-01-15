@@ -1,8 +1,9 @@
-import { Session, deepFreeze, isNil, isNilOrEmpty } from "wmfnext-shell";
+import type { AppSession as _AppSession, AppUser as _AppUser } from "wmfnext-typings";
+import { deepFreeze, isNil, isNilOrEmpty } from "wmfnext-shell";
 
 import type { SessionAccessorFunction } from "wmfnext-shell";
 
-export class AppUser {
+export class AppUser implements _AppUser {
     private _name: string;
 
     constructor(name: string) {
@@ -24,7 +25,7 @@ export class AppUser {
     }
 }
 
-export class AppSession implements Session {
+export class AppSession implements _AppSession {
     private _user: AppUser;
 
     constructor(user: AppUser) {

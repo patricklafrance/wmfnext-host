@@ -11,7 +11,7 @@ const LoginPage = lazy(() => import("./pages/Login"));
 const LogoutPage = lazy(() => import("./pages/Logout"));
 const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
-function AuthenticatedRoutes() {
+function AuthenticatedBoundary() {
     return useIsAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
 }
 
@@ -21,7 +21,7 @@ export function App() {
 
     const wrapManagedRoutes = useCallback(managedRoutes => {
         return {
-            element: <AuthenticatedRoutes />,
+            element: <AuthenticatedBoundary />,
             children: [
                 {
                     path: "/",
