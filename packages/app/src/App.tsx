@@ -19,34 +19,37 @@ export function App() {
     const registrationStatus = useIsReady();
     const routes = useRoutes();
 
+    const wrapManagedRoutes = useCallback(managedRoutes => {
+        return {
+            element: <AuthenticatedRoutes />,
+            children: [
+                {
+                    path: "/",
+                    element: <RootLayout />,
+                    children: [
+                        {
+                            // Pathless router to set an error boundary inside the layout instead of outside.
+                            // It's quite useful to not lose the layout when an unmanaged error occurs.
+                            errorElement: <RootErrorBoundary />,
+                            children: [
+                                ...managedRoutes
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+    }, []);
+
     // Using the useHoistedRoutes hook allow routes hoisted by modules to be rendered at the root of the router.
     // To disallow the hoisting functionality, do not use this hook.
     const hoistedRoutes = useHoistedRoutes(routes, {
+        wrapManagedRoutes,
+        // Only the following routes can be hoisted by modules.
         allowedPaths: [
             "remote1/page-2",
             "remote1/page-4"
-        ],
-        wrapManagedRoutes: useCallback(managedRoutes => {
-            return {
-                element: <AuthenticatedRoutes />,
-                children: [
-                    {
-                        path: "/",
-                        element: <RootLayout />,
-                        children: [
-                            {
-                                // Pathless router to set an error boundary inside the layout instead of outside.
-                                // It's quite useful to not lose the layout when an unmanaged error occurs.
-                                errorElement: <RootErrorBoundary />,
-                                children: [
-                                    ...managedRoutes
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            };
-        }, [])
+        ]
     });
 
     const router = useMemo(() => {

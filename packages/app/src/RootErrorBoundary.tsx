@@ -23,7 +23,7 @@ export function RootErrorBoundary() {
 
     return (
         <p className="error-message">
-            An unmanaged error occured insisde a module and other parts of the application are still fully functional!
+            An unmanaged error occured insisde a module. Still, other parts of the application are fully functional!
             <br />
             <span role="img" aria-label="pointer">👉</span> {getErrorMessage(error)}
         </p>
