@@ -1,7 +1,23 @@
+.wrapper {
+    width: fit-content;
+}
+
+.top-bar {
+    display: flex;
+}
+
+.counter {
+    flex-grow: 1;
+}
+
+.separator {
+    margin: 0 5px;
+}
+
 .nav {
     max-width: fit-content;
 }
 
-.highlight {
+.highlight-item {
     background-color: aqua;
 }
