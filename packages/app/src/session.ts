@@ -1,9 +1,9 @@
-import type { AppSession as _AppSession, AppUser as _AppUser } from "wmfnext-typings";
+import type { AppSession as IAppSession, AppUser as IAppUser } from "wmfnext-shared";
 import { deepFreeze, isNil, isNilOrEmpty } from "wmfnext-shell";
 
 import type { SessionAccessorFunction } from "wmfnext-shell";
 
-export class AppUser implements _AppUser {
+export class AppUser implements IAppUser {
     private _name: string;
 
     constructor(name: string) {
@@ -25,7 +25,7 @@ export class AppUser implements _AppUser {
     }
 }
 
-export class AppSession implements _AppSession {
+export class AppSession implements IAppSession {
     private _user: AppUser;
 
     constructor(user: AppUser) {

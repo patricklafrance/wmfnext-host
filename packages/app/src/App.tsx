@@ -1,17 +1,16 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RootErrorBoundary, RootLayout } from "./layouts";
 import { lazy, useCallback, useMemo } from "react";
 import { useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
 
 import { Loading } from "./components";
-import { RootErrorBoundary } from "./RootErrorBoundary";
-import { RootLayout } from "./layouts";
 import { useAreRemotesReady } from "wmfnext-remote-loader";
 
 const LoginPage = lazy(() => import("./pages/Login"));
 const LogoutPage = lazy(() => import("./pages/Logout"));
 const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
-function AuthenticatedBoundary() {
+function AuthenticationBoundary() {
     return useIsAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
 }
 
@@ -21,7 +20,7 @@ export function App() {
 
     const wrapManagedRoutes = useCallback(managedRoutes => {
         return {
-            element: <AuthenticatedBoundary />,
+            element: <AuthenticationBoundary />,
             children: [
                 {
                     path: "/",

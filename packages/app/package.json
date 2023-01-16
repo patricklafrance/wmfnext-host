@@ -19,6 +19,6 @@
   },
   "dependencies": {
     "wmfnext-static-module-1": "file:../static-module-1",
-    "wmfnext-typings": "file:../typings"
+    "wmfnext-shared": "file:../shared"
   }
 }

@@ -21,7 +21,7 @@
     "dev-static-module-1": "cd packages/static-module-1 && yarn dev",
     "check-types": "yarn delete-ts-cache && tsc",
     "clean": "run-p -c clean:pkg delete-ts-cache",
-    "clean:pkg": "lerna run clean",
+    "clean:pkg": "lerna run clean --no-bail",
     "delete-ts-cache": "rimraf *.tsbuildinfo",
     "delete-node-modules": "run-s -c delete-node-modules:pkg delete-node-modules:root",
     "delete-node-modules:pkg": "lerna clean --yes",
@@ -34,8 +34,10 @@
     "link-pkg:remote-loader": "yarn link wmfnext-remote-loader",
     "lint": "run-s eslint check-types",
     "preinstall": "yarn link-pkg",
+    "postinstall": "yarn setup",
     "reset": "run-s -c clean delete-yarn-lock delete-node-modules",
-    "serve-build": "cd packages/app && yarn serve-build"
+    "serve-build": "cd packages/app && yarn serve-build",
+    "setup": "lerna run setup"
   },
   "devDependencies": {
     "@sharegate/eslint-config-react": "5.0.1",

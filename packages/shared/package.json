@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json.schemastore.org/package",
+  "name": "wmfnext-shared",
+  "version": "0.0.1",
+  "author": "Patrick Lafrance",
+  "license": "Apache-2.0",
+  "repository": "https://github.com/patricklafrance/wmfnext-host.git",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "yarn clean",
+    "build": "tsc --build ./tsconfig.build.json",
+    "clean": "run-p delete-dist delete-ts-cache unlink-pkg",
+    "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
+    "delete-dist": "rimraf dist",
+    "dev": "tsc --watch --project ./tsconfig.build.json",
+    "setup": "yarn link",
+    "unlink-pkg": "yarn unlink"
+  }
+}
+
