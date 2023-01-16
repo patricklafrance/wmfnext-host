@@ -1,10 +1,11 @@
 import { ConsoleLogger, RuntimeContext, ShellRuntime, registerStaticModules } from "wmfnext-shell";
 
 import { App } from "./App";
+import { CustomLogger } from "./customLogger";
 import { Loading } from "./components";
 import type { RemoteDefinition } from "wmfnext-remote-loader";
 import { Suspense } from "react";
-import { TrackingService } from "./services";
+import { TrackingService } from "./trackingService";
 import { TrackingServiceKey } from "wmfnext-shared";
 import { createRoot } from "react-dom/client";
 import { registerRemoteModules } from "wmfnext-remote-loader";
@@ -23,7 +24,7 @@ const Remotes: RemoteDefinition[] = [
 ];
 
 const runtime = new ShellRuntime({
-    loggers: [new ConsoleLogger()],
+    loggers: [new ConsoleLogger(), new CustomLogger()],
     services: {
         [TrackingServiceKey]: new TrackingService()
     },
