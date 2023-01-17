@@ -1,4 +1,4 @@
-import { ConsoleLogger, RuntimeContext, ShellRuntime, registerStaticModules } from "wmfnext-shell";
+import { ConsoleLogger, Runtime, RuntimeContext, registerStaticModules } from "wmfnext-shell";
 
 import { App } from "./App";
 import { CustomLogger } from "./customLogger";
@@ -23,7 +23,7 @@ const Remotes: RemoteDefinition[] = [
     }
 ];
 
-const runtime = new ShellRuntime({
+const runtime = new Runtime({
     loggers: [new ConsoleLogger(), new CustomLogger()],
     services: {
         [TrackingServiceKey]: new TrackingService()

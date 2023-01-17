@@ -1,7 +1,7 @@
 import { Navigate, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import { RootErrorBoundary, RootLayout } from "./layouts";
+import { Route, useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
 import { lazy, useCallback, useMemo } from "react";
-import { useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
 
 import { Loading } from "./components";
 import { useAreRemotesReady } from "wmfnext-remote-loader";
@@ -18,7 +18,7 @@ export function App() {
     const isReady = useAreRemotesReady();
     const routes = useRoutes();
 
-    const wrapManagedRoutes = useCallback(managedRoutes => {
+    const wrapManagedRoutes = useCallback((managedRoutes: Readonly<Route[]>) => {
         return {
             element: <AuthenticationBoundary />,
             children: [
