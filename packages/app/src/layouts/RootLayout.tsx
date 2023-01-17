@@ -12,7 +12,7 @@ import { Loading } from "../components";
 export function RootLayout() {
     const [count, setCount] = useState(0);
 
-    const session = useSession<AppSession>();
+    const session = useSession() as AppSession;
     const navigationItems = useNavigationItems();
 
     useEventBusListener(IncrementCountEvent, () => {
