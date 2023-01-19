@@ -1,7 +1,9 @@
 import { useRuntime } from "wmfnext-shell";
 
-export interface TrackingService {
-    track: (data: unknown) => void;
+export class TrackingService {
+    track(data: unknown) {
+        console.log("[tracking] Tracking the following data: ", data);
+    }
 }
 
 export const TrackingServiceKey = "tracking";

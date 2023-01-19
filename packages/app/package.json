@@ -10,7 +10,7 @@
   "scripts": {
     "prebuild": "yarn clean",
     "build": "webpack --config webpack.prod.js",
-    "clean": "run-p delete-dist delete-ts-cache",
+    "clean": "run-p --continue-on-error delete-dist delete-ts-cache",
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",
     "dev": "webpack serve --config webpack.dev.js",
@@ -18,7 +18,7 @@
     "serve-build:start-server": "yarn http-server dist -p 8080 -P http://localhost:8080?"
   },
   "dependencies": {
-    "wmfnext-static-module-1": "file:../static-module-1",
-    "wmfnext-shared": "file:../shared"
+    "wmfnext-static-module-1": "0.0.1",
+    "wmfnext-shared": "0.0.1"
   }
 }

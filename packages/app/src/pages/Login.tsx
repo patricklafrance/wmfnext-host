@@ -1,8 +1,8 @@
-import { AppSession, AppUser, sessionManager } from "../session";
 import type { ChangeEvent, MouseEvent } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useCallback, useState } from "react";
 
+import { sessionManager } from "../session";
 import { useIsAuthenticated } from "wmfnext-shell";
 
 export default function Login() {
@@ -15,10 +15,11 @@ export default function Login() {
         event.preventDefault();
 
         if (username === "temp" && password === "temp") {
-            const user = new AppUser(username);
-            const session = new AppSession(user);
-
-            sessionManager.setSession(session);
+            sessionManager.setSession({
+                user: {
+                    name: username
+                }
+            });
 
             navigate("/");
         }

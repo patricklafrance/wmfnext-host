@@ -1,12 +1,10 @@
 import { ConsoleLogger, Runtime, RuntimeContext, registerStaticModules } from "wmfnext-shell";
+import { Loading, TrackingService, TrackingServiceKey } from "wmfnext-shared";
 
 import { App } from "./App";
 import { CustomLogger } from "./customLogger";
-import { Loading } from "./components";
 import type { RemoteDefinition } from "wmfnext-remote-loader";
 import { Suspense } from "react";
-import { TrackingService } from "./trackingService";
-import { TrackingServiceKey } from "wmfnext-shared";
 import { createRoot } from "react-dom/client";
 import { registerRemoteModules } from "wmfnext-remote-loader";
 import { register as registerStaticModule1 } from "wmfnext-static-module-1";

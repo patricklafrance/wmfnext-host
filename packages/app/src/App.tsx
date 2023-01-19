@@ -1,59 +1,18 @@
-import { Navigate, Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
-import { RootErrorBoundary, RootLayout } from "./layouts";
-import { Route, useHoistedRoutes, useIsAuthenticated, useRoutes } from "wmfnext-shell";
-import { lazy, useCallback, useMemo } from "react";
+import { Loading, useAppRouter } from "wmfnext-shared";
 
-import { Loading } from "./components";
+import { RouterProvider } from "react-router-dom";
+import { lazy } from "react";
 import { useAreRemotesReady } from "wmfnext-remote-loader";
 
 const LoginPage = lazy(() => import("./pages/Login"));
 const LogoutPage = lazy(() => import("./pages/Logout"));
 const NotFoundPage = lazy(() => import("./pages/NotFound"));
 
-function AuthenticationBoundary() {
-    return useIsAuthenticated() ? <Outlet /> : <Navigate to="/login" />;
-}
-
 export function App() {
     const isReady = useAreRemotesReady();
-    const routes = useRoutes();
 
-    const wrapManagedRoutes = useCallback((managedRoutes: Readonly<Route[]>) => {
-        return {
-            element: <AuthenticationBoundary />,
-            children: [
-                {
-                    path: "/",
-                    element: <RootLayout />,
-                    children: [
-                        {
-                            // Pathless route to set an error boundary inside the layout instead of outside.
-                            // It's quite useful to not lose the layout when an unmanaged error occurs.
-                            errorElement: <RootErrorBoundary />,
-                            children: [
-                                ...managedRoutes
-                            ]
-                        }
-                    ]
-                }
-            ]
-        };
-    }, []);
-
-    // Using the useHoistedRoutes hook allow routes hoisted by modules to be rendered at the root of the router.
-    // To disallow the hoisting functionality, do not use this hook.
-    const hoistedRoutes = useHoistedRoutes(routes, {
-        wrapManagedRoutes,
-        // Only the following routes can be hoisted by modules.
-        allowedPaths: [
-            "remote1/page-2",
-            "remote1/page-4"
-        ]
-    });
-
-    const router = useMemo(() => {
-        return createBrowserRouter([
-            ...hoistedRoutes,
+    const router = useAppRouter({
+        rootRoutes: [
             {
                 path: "login",
                 element: <LoginPage />
@@ -66,8 +25,8 @@ export function App() {
                 path: "*",
                 element: <NotFoundPage />
             }
-        ]);
-    }, [hoistedRoutes]);
+        ]
+    });
 
     if (!isReady) {
         return <Loading />;

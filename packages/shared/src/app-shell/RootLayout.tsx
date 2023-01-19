@@ -5,14 +5,14 @@ import type { RenderItemFunction, RenderSectionFunction } from "wmfnext-shell";
 import { Suspense, useCallback, useState } from "react";
 import { useEventBusListener, useNavigationItems, useRenderedNavigationItems, useSession } from "wmfnext-shell";
 
-import type { AppSession } from "../session";
-import { IncrementCountEvent } from "wmfnext-shared";
+import { IncrementCountEvent } from "../events";
 import { Loading } from "../components";
+import type { Session } from "../types";
 
 export function RootLayout() {
     const [count, setCount] = useState(0);
 
-    const session = useSession() as AppSession;
+    const session = useSession() as Session;
     const navigationItems = useNavigationItems();
 
     useEventBusListener(IncrementCountEvent, () => {

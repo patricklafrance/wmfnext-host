@@ -1,6 +1,6 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import ModuleFederationPlugin from "webpack/lib/container/ModuleFederationPlugin.js";
-import { createHostConfiguration } from "wmfnext-remote-loader/createModuleFederationConfiguration.js";
+import { createHostConfiguration } from "wmfnext-shared/createModuleFederationConfiguration.js";
 import path from "path";
 import url from "url";
 import packageJson from "../../package.json" assert { type: "json" };
@@ -59,18 +59,7 @@ export default {
     },
     plugins: [
         new ModuleFederationPlugin(
-            createHostConfiguration(
-                "host",
-                packageJson,
-                {
-                    sharedDependencies: {
-                        "wmfnext-shell": {
-                            singleton: true,
-                            requiredVersion: "0.0.1"
-                        }
-                    }
-                }
-            )
+            createHostConfiguration("host", packageJson)
         ),
         new HtmlWebpackPlugin({
             template: "./public/index.html"
