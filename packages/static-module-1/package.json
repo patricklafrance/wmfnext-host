@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "repository": "https://github.com/patricklafrance/wmfnext-host.git",
   "type": "module",
-  "main": "dist/index.js",
+  "main": "dist/register.js",
   "scripts": {
     "prebuild": "yarn clean",
     "build": "tsc --build ./tsconfig.build.json",
