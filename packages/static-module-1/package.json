@@ -14,6 +14,7 @@
     "clean": "run-p --continue-on-error delete-dist delete-ts-cache",
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",
-    "dev": "tsc --watch --project ./tsconfig.dev.json"
+    "dev": "tsc --watch --project ./tsconfig.dev.json",
+    "dev-local": "webpack serve --config webpack.config.js"
   }
 }

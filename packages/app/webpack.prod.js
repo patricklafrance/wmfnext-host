@@ -21,6 +21,7 @@ export default {
     },
     output: {
         path: path.resolve(__dirname, "dist"),
+        // The trailing / is very important, otherwise paths will ne be resolved correctly.
         publicPath: "http://localhost:8080/",
         clean: true
     },
