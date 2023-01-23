@@ -1,10 +1,8 @@
 import HtmlWebpackPlugin from "html-webpack-plugin";
+import { getFileDirectory } from "wmfnext-remote-loader/webpack.js";
 import path from "path";
-import url from "url";
 
-// "__dirname" is specific to CommonJS: https://flaviocopes.com/fix-dirname-not-defined-es-module-scope/
-const __filename = url.fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = getFileDirectory(import.meta);
 
 /** @type {import("webpack").Configuration} */
 export default {
