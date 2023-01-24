@@ -15,9 +15,12 @@ export function RootLayout() {
     const session = useSession() as Session;
     const navigationItems = useNavigationItems();
 
-    useEventBusListener(IncrementCountEvent, () => {
+    const handleIncrementCountEvent = useCallback(() => {
         setCount(x => x + 1);
-    });
+    }, [setCount]);
+
+    // Add an event listener to react to increment request from independent modules.
+    useEventBusListener(IncrementCountEvent, handleIncrementCountEvent);
 
     const renderItem: RenderItemFunction = useCallback(({ content, linkProps, additionalProps: { highlight, ...additionalProps } }, index, level) => {
         return (
