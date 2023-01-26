@@ -16,6 +16,7 @@ export default {
     optimization: {
         minimize: true
     },
+    entry: "./src/index.ts",
     output: {
         path: path.resolve(__dirname, "dist"),
         // The trailing / is very important, otherwise paths will ne be resolved correctly.

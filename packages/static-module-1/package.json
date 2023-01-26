@@ -15,6 +15,13 @@
     "delete-ts-cache": "yarn rimraf *.tsbuildinfo",
     "delete-dist": "rimraf dist",
     "dev": "tsc --watch --project ./tsconfig.dev.json",
-    "dev-local": "webpack serve --config webpack.config.js"
+    "dev-local": "webpack serve --config webpack.config.js",
+    "reset": "yarn clean"
+  },
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-router-dom": "6.4.5",
+    "wmfnext-shell": "0.1.0"
   }
 }

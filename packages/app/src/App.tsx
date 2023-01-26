@@ -11,6 +11,8 @@ const NotFoundPage = lazy(() => import("./pages/NotFound"));
 export function App() {
     const isReady = useAreRemotesReady();
 
+    console.log("isReady: ", isReady);
+
     const router = useAppRouter({
         rootRoutes: [
             {

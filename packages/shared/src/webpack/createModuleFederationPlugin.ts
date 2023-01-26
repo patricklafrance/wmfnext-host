@@ -3,14 +3,6 @@ import { createHostPlugin as _createHostPlugin, createModulePlugin as _createMod
 import type { CreateConfigurationFunction } from "wmfnext-remote-loader/webpack";
 
 export const ApplicationSharedDependencies = {
-    "wmfnext-shell": {
-        singleton: true,
-        requiredVersion: "0.0.1"
-    },
-    "wmfnext-remote-loader": {
-        singleton: true,
-        requiredVersion: "0.0.1"
-    },
     "wmfnext-shared": {
         singleton: true,
         requiredVersion: "0.0.1"

@@ -6,7 +6,7 @@
         // The output module resolution system that the code will be compiled for
         "module": "ESNext",
         // The input module resolution system (until https://github.com/microsoft/TypeScript/issues/37582 is fixed)
-        "moduleResolution": "Node",
+        "moduleResolution": "node",
         // Skip type checking of all declaration files
         "skipLibCheck": true,
         // Allow default imports from modules with no default export
