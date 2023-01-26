@@ -41,7 +41,8 @@
     "reset:root": "run-s clean:root delete-yarn-lock delete-node-modules",
     "reset:pkg": "lerna run reset --no-bail",
     "serve-build": "cd packages/app && yarn serve-build",
-    "setup": "lerna run setup"
+    "setup": "lerna run setup",
+    "build-ci": "yarn install && yarn build"
   },
   "devDependencies": {
     "@sharegate/eslint-config-react": "5.0.1",
