@@ -5,7 +5,7 @@ import type { CreateConfigurationFunction } from "wmfnext-remote-loader/webpack"
 export const ApplicationSharedDependencies = {
     "wmfnext-shared": {
         singleton: true,
-        requiredVersion: "0.0.1"
+        requiredVersion: "0.1.0"
     }
 };
 
