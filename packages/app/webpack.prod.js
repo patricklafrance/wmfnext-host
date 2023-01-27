@@ -5,6 +5,8 @@ import path from "path";
 
 import packageJson from "../../package.json" assert { type: "json" };
 
+const isNetlify = process.env.NETLIFY === "true";
+
 const __dirname = getFileDirectory(import.meta);
 
 /** @type {import("webpack").Configuration} */
@@ -20,7 +22,7 @@ export default {
     output: {
         path: path.resolve(__dirname, "dist"),
         // The trailing / is very important, otherwise paths will ne be resolved correctly.
-        publicPath: "https://wmfnext-host.netlify.app/",
+        publicPath: isNetlify ? "https://wmfnext-host.netlify.app/" : "http://localhost:8080/",
         clean: true
     },
     module: {

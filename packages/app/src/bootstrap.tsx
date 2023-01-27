@@ -1,10 +1,10 @@
 import { ConsoleLogger, Runtime, RuntimeContext, registerStaticModules } from "wmfnext-shell";
 import { Loading, TrackingService, TrackingServiceKey } from "wmfnext-shared";
+import { StrictMode, Suspense } from "react";
 
 import { App } from "./App";
 import { CustomLogger } from "./customLogger";
 import type { RemoteDefinition } from "wmfnext-remote-loader";
-import { Suspense } from "react";
 import { createRoot } from "react-dom/client";
 import { registerRemoteModules } from "wmfnext-remote-loader";
 import { register as registerStaticModule1 } from "wmfnext-static-module-1";
@@ -36,9 +36,11 @@ registerRemoteModules(Remotes, runtime);
 const root = createRoot(document.getElementById("root"));
 
 root.render(
-    <RuntimeContext.Provider value={runtime}>
-        <Suspense fallback={<Loading />}>
-            <App />
-        </Suspense>
-    </RuntimeContext.Provider>
+    <StrictMode>
+        <RuntimeContext.Provider value={runtime}>
+            <Suspense fallback={<Loading />}>
+                <App />
+            </Suspense>
+        </RuntimeContext.Provider>
+    </StrictMode>
 );

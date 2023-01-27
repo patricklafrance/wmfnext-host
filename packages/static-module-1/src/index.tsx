@@ -1,4 +1,4 @@
-import { ConsoleLogger, Runtime, RuntimeContext, registerStaticModules } from "wmfnext-shell";
+import { ConsoleLogger, Runtime, RuntimeContext, deepFreeze, registerStaticModules } from "wmfnext-shell";
 import { Loading, TrackingService, TrackingServiceKey } from "wmfnext-shared";
 
 import { App } from "./App";
@@ -13,11 +13,13 @@ const runtime = new Runtime({
         [TrackingServiceKey]: new TrackingService()
     },
     sessionAccessor: () => {
-        return {
+        const session = deepFreeze({
             user: {
                 name: "temp"
             }
-        } as Session;
+        });
+
+        return session as Readonly<Session>;
     }
 });
 
