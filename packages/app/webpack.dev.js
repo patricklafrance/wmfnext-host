@@ -2,6 +2,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import { createHostPlugin } from "wmfnext-shared/webpack.js";
 import { getFileDirectory } from "wmfnext-remote-loader/webpack.js";
 import path from "path";
+import webpack from "webpack";
 
 import packageJson from "../../package.json" assert { type: "json" };
 
@@ -57,6 +58,9 @@ export default {
     },
     plugins: [
         createHostPlugin("host", packageJson),
+        new webpack.DefinePlugin({
+            "process.env": JSON.stringify(process.env)
+        }),
         new HtmlWebpackPlugin({
             template: "./public/index.html"
         })
