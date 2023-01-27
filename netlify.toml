@@ -1,4 +1,8 @@
 [build.environment]
   NODE_VERSION = "19.2.0"
   YARN_VERSION = "1.22.19"
-  YARN_FLAGS = "--version"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
