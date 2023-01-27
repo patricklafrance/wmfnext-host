@@ -8,6 +8,16 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": [
+    "/dist",
+    "webpack.js"
+  ],
+  "engines": {
+    "node": ">=19"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "prebuild": "yarn clean",
     "build": "tsc --build ./tsconfig.build.json && yarn copy-css-files",
