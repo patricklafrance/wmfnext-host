@@ -10,13 +10,15 @@ import { registerRemoteModules } from "wmfnext-remote-loader";
 import { register as registerStaticModule1 } from "wmfnext-static-module-1";
 import { sessionAccessor } from "./session";
 
+const isNetlify = process.env.NETLIFY === "true";
+
 const StaticModules = [
     registerStaticModule1
 ];
 
 const Remotes: RemoteDefinition[] = [
     {
-        url: "http://localhost:8081",
+        url: isNetlify ? "https://wmfnext-host.netlify.app/" : "http://localhost:8081",
         name: "remote1"
     }
 ];
