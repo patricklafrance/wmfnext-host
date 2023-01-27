@@ -26,7 +26,7 @@
     "react-dom": "18.2.0",
     "react-router-dom": "6.4.5",
     "wmfnext-shell": "0.1.0",
-    "wmfnext-remote-loader": "0.1.1"
+    "wmfnext-remote-loader": "0.1.2"
   }
 }
 
