@@ -2,6 +2,8 @@
 
 Host application to showcase [wmfnext-shell](https://github.com/patricklafrance/wmfnext-shell).
 
+A [live example](https://wmfnext-host.netlify.app) of this application is hosted on Netlify.
+
 - [Installation](#installation)
 - [Start developing](#start-developing)
 - [Publish the application](#publish-the-application)
@@ -22,7 +24,7 @@ For more options to install Yarn, view https://yarnpkg.com/lang/en/docs/install/
 To install the project, open a terminal at the root of the workspace and execute the following command:
 
 ```bash
-yarn install
+yarn install-dev
 ```
 
 > To ease local development symlinks to shell packages are automatically created at installation.
@@ -35,15 +37,21 @@ yarn install
 yarn dev
 ```
 
-To only start the application in development mode, use the following command instead:
+## Static module
+
+To develop the static module in isolation, [Open a terminal in VSCode](https://code.visualstudio.com/docs/editor/integrated-terminal#_managing-multiple-terminals) and execute the following commands at the root of the workspace:
 
 ```bash
-yarn dev-app
+cd packages/static-module-1
+```
+
+```bash
+yarn dev-local
 ```
 
 ## Publish the application
 
-TBD
+Push a commit and the application will be automatically deployed on Netlify.
 
 ## Release the packages
 
@@ -81,16 +89,33 @@ After you released the packages, create a [Github release](https://github.com/gs
 
 Don't forget to **publish** the release.
 
-## Available remotes
+## Available modules
 
-TBD
+- The static module "static-1" is automatically deployed with the host application.
+- The remote module "remote-1" is available in the [wmfnext-remote-1 repository](https://github.com/patricklafrance/wmfnext-remote-1).
 
 ## Other commands
 
+### build
+
+```bash
+yarn build
+```
+
+### clean
+
+```bash
+yarn clean
+```
+
+### link-pkg
+
+```bash
+yarn link-pkg
+```
+
 ### reset
 
-TBD
-
-### serve-build
-
-TBD
+```bash
+yarn reset
+```
