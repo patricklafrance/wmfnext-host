@@ -18,7 +18,7 @@ const StaticModules = [
 
 const Remotes: RemoteDefinition[] = [
     {
-        url: isNetlify ? "https://wmfnext-host.netlify.app" : "http://localhost:8081",
+        url: isNetlify ? "https://wmfnext-remote-1.netlify.app" : "http://localhost:8081",
         name: "remote1"
     }
 ];
