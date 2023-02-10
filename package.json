@@ -82,7 +82,7 @@
     "webpack-cli": "5.0.1",
     "webpack-dev-server": "4.11.1",
     "wmfnext-shell": "0.1.1",
-    "wmfnext-remote-loader": "0.1.4",
-    "wmfnext-fakes": "0.1.1"
+    "wmfnext-remote-loader": "0.2.0",
+    "wmfnext-fakes": "0.2.0"
   }
 }

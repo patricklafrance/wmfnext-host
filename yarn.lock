@@ -13048,17 +13048,17 @@ winston@^3.2.1, winston@^3.8.2:
     triple-beam "^1.3.0"
     winston-transport "^4.5.0"
 
-wmfnext-fakes@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/wmfnext-fakes/-/wmfnext-fakes-0.1.1.tgz#00611b40d74d8236b9cd6da2104a63424aa8b2f0"
-  integrity sha512-fFld/jjioY5tEd+hbygdWVKRMOeQuzwKsfELbImVQM5goudpqN4HuDWgD8PCAvyJAROzVhWIRrHnYimCbAeGFg==
+wmfnext-fakes@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/wmfnext-fakes/-/wmfnext-fakes-0.2.0.tgz#e469304a0fb940eb7e473473fd14f9904b7a21af"
+  integrity sha512-AbSicgiCTuw/ynMUMwmlQ1B4+sA95KgKkrLHxuOlZaME1UHHkdqpggLIvZHcD3w+XPmgTR/m3f5GrW10EoP6ng==
   dependencies:
     wmfnext-shell "0.1.1"
 
-wmfnext-remote-loader@0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/wmfnext-remote-loader/-/wmfnext-remote-loader-0.1.4.tgz#976e9b88bef9b6926dba5ede853a608e65641b63"
-  integrity sha512-drDbQQPI9llaS4ePtuYYTtAqHSpCitBG1elrTX+KpBOYKNIj94sYplN9HgurmayD1Eh9/eRq5wqe1F1/4LYGrw==
+wmfnext-remote-loader@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/wmfnext-remote-loader/-/wmfnext-remote-loader-0.2.0.tgz#133aadf0b8570f0e95603fadb155bf73a7b77dc2"
+  integrity sha512-DxMHSCcvqcmYa3HjwFHRh++6uRH/t7ff6Nr2xhqy4UIyMoUlZGiXf4vPNJ3FO9hTHm2wXYeJ6NFNGhuCYopeFg==
   dependencies:
     wmfnext-shell "0.1.1"
 
