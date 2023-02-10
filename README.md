@@ -8,7 +8,7 @@ A [live example](https://wmfnext-host.netlify.app) of this application is hosted
 - [Start developing](#start-developing)
 - [Publish the application](#publish-the-application)
 - [Release the packages](#release-the-packages)
-- [Available remotes](#available-remotes)
+- [Available modules](#available-modules)
 - [Other commands](#other-commands)
 
 ## Installation
